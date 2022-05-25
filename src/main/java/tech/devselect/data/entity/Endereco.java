@@ -1,6 +1,8 @@
-package tech.devselect.data;
+package tech.devselect.data.entity;
 
 import javax.persistence.Embeddable;
+
+import tech.devselect.data.dto.EnderecoDTO;
 
 
 @Embeddable
@@ -9,14 +11,26 @@ public class Endereco {
 	private String cep;
 	private String logradouro;
 	private String numero;
-	private String complemento;
 	private String bairro;
 	private String cidade;
 	private String estado;
 	
 	
-	public Endereco() {	}
+	public Endereco() {	}  
 
+	public Endereco(String cep, String logradouro, String numero, String bairro, String cidade, String estado) {
+		super();
+		this.cep = cep;
+		this.logradouro = logradouro;
+		this.numero = numero;
+		this.bairro = bairro;
+		this.cidade = cidade;
+		this.estado = estado;
+	}
+	
+	public EnderecoDTO getDTO() {
+		return new EnderecoDTO(getCep(), getLogradouro(), getNumero(), getBairro(), getCidade(), getEstado());
+	}
 
 	public String getCep() {
 		return cep;
@@ -41,14 +55,6 @@ public class Endereco {
 
 	public void setNumero(String numero) {
 		this.numero = numero;
-	}
-
-	public String getComplemento() {
-		return complemento;
-	}
-
-	public void setComplemento(String complemento) {
-		this.complemento = complemento;
 	}
 
 	public String getBairro() {
